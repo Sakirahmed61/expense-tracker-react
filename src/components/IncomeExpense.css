@@ -1,0 +1,32 @@
+.income-expense-container {
+  padding: 10px 0px;
+  margin-bottom: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  border-top: 2px solid var(--card-hover);
+}
+
+.value-group {
+  padding-top: 10px;
+  text-align: center;
+}
+
+.label {
+  color: var(--text-dark);
+  font-size: 1.4rem;
+}
+
+.amount {
+  font-weight: 700;
+  font-size: 1.8rem;
+  transform: translateX(-1px);
+}
+
+.amount.income {
+  color: var(--green);
+}
+
+.amount.expense {
+  color: var(--red)
+}

@@ -59,35 +59,37 @@ function App() {
 
   return (
     <div className="App">
-      <header>
-        <h1>Expense Tracker</h1>
-        <CurrencySelector
-          currency={currency}
-          onCurrencyChange={setCurrency}></CurrencySelector>
-      </header>
-      
-      <section className='upper-app'>
-        <Balance 
-          total = {total}
-          formatCurrency = {formatCurrency}
-        ></Balance>
-        <IncomeExpense 
-          income={income} 
-          expense={expense}
-          formatCurrency = {formatCurrency}
-        ></IncomeExpense>
-      </section>
+      <div className="container">
+        <header className="header">
+          <h1>Expense Tracker</h1>
+          <CurrencySelector
+            currency={currency}
+            onCurrencyChange={setCurrency}></CurrencySelector>
+        </header>
+        
+        <section className='upper-app'>
+          <Balance
+            total = {total}
+            formatCurrency = {formatCurrency}
+          ></Balance>
+          <IncomeExpense 
+            income={income} 
+            expense={expense}
+            formatCurrency = {formatCurrency}
+          ></IncomeExpense>
+        </section>
 
-      <section className='lower-app'>
-        <TransactionList 
-          transactions={transactions}
-          onRemoveTransaction={removeTransaction}
-          formatCurrency = {formatCurrency}></TransactionList>       
+        <section className='lower-app'>
+          <TransactionList
+            transactions={transactions}
+            onRemoveTransaction={removeTransaction}
+            formatCurrency = {formatCurrency}></TransactionList>       
 
-        <TransactionInputForm
-          onAddTransaction = {addTransaction}>
-        </TransactionInputForm>
-      </section>
+          <TransactionInputForm
+            onAddTransaction = {addTransaction}>
+          </TransactionInputForm>
+        </section>
+      </div>
     </div>
   );
 }

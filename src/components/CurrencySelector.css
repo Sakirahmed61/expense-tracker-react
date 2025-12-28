@@ -1,0 +1,32 @@
+.currency-selector select {
+  appearance: none;
+  width: 50px;
+  height: 26px;
+  background-color: var(--card-bg);
+  text-align: center;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.currency-selector select:hover {
+  background-color: var(--card-hover);
+}
+
+.currency-selector select:focus{
+  outline: none;
+}
+
+option {
+  background-color: var(--bg-light);
+  appearance: none;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+option:hover {
+  background-color: var(--primary-gradient);
+  background-size: 150%;
+  background-position: center;
+}

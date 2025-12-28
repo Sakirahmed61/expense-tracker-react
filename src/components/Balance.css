@@ -1,0 +1,15 @@
+.balance-container {
+  text-align: center;
+  padding: 10px;
+}
+
+.balance-container h3 {
+  color: var(--text-dark);
+  font-size: 1.4rem;
+}
+
+.balance-container p {
+  font-weight: 700;
+  font-size: 2rem;
+  transform: translateX(-1px);
+}
