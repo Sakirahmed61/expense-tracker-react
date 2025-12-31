@@ -16,15 +16,18 @@
 
 input {
   width: 100%;
-  margin-top: 10px;
   padding: 6px;
   border-radius: 6px;
   border: 1px solid transparent;
 }
 
+/* Exclusive styling for text and number inputs */
+input[type="text"], input[type="number"] { 
+  margin-top: 10px;
+}
 
 .form-group input:focus {
-  border: 1px solid #555;
+  border: 1px solid var(--text-gray);
   outline: none;
 }
 

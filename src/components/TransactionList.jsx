@@ -9,22 +9,29 @@ export default function TransactionList({transactions, onRemoveTransaction, form
       <ul className='list-container'>
 
         {
-          (transactions.length===0) ? <p className='empty-state'>No transactions yet</p> :
+          (Object.entries(transactions).length===0) ? <p className='empty-state'>No transactions yet</p> :
           
-          transactions.map((transaction) => (
-            <li key={transaction.id} 
-              className={`list-item ${transaction.amount < 0 ? "expense" : "income"}`}>
-              
-              <span className='trans-label'>{transaction.label}</span>
+          Object.entries(transactions).map(([date, items]) => (
+            <div key={date}>
+              <h5 className="trans-date-label">{date}</h5>
 
-              <div className="trans-item-right">
-                <span className={`trans-amount ${transaction.amount < 0 ? "expense" : "income"}`}>{formatCurrency(transaction.amount)}</span>
+              {items.map(transaction => (
 
-                <button className='remove-btn'
-                  onClick={() => onRemoveTransaction(transaction.id)}
-                ></button>
-              </div>
-            </li>
+                <li key={transaction.id} 
+                  className={`list-item ${transaction.amount < 0 ? "expense" : "income"}`}>
+                  
+                  <span className='trans-label'>{transaction.label}</span>
+
+                  <div className="trans-item-right">
+                    <span className={`trans-amount ${transaction.amount < 0 ? "expense" : "income"}`}>{formatCurrency(transaction.amount)}</span>
+
+                    <button className='remove-btn'
+                      onClick={() => onRemoveTransaction(transaction.id)}
+                    ></button>
+                  </div>
+                </li>
+              ))}
+            </div>
             )
           )
         }

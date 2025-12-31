@@ -21,7 +21,8 @@ export default function TransactionInputForm(props) {
     const transaction = {
       id: Date.now(),
       label: label,
-      amount: Number(amount)
+      amount: Number(amount),
+      dateCreated: new Date().toISOString()
     }
 
     props.onAddTransaction(transaction)

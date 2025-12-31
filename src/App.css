@@ -5,6 +5,7 @@
 
   --text-dark: hsl(0, 0%, 5%);
   --text-light: hsl(0, 0%, 95%);
+  --text-gray: hsl(0, 0%, 40%);
 
   --primary-gradient: linear-gradient(135deg, hsla(103, 51%, 50%, 1) 0%, hsla(355, 75%, 49%, 1) 100%);
 
@@ -41,6 +42,51 @@
 
 .header h1 {
   color: var(--text-dark)
+}
+
+.date-selectors {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0px;
+  width: 100%;
+  gap: 20px;
+}
+
+.date-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.date-group h4 {
+  color: var(--text-gray);
+  font-size: 0.8rem;
+}
+
+.date-group input[type="date"] {
+  background-color: var(--bg-light);
+  color: var(--text-gray);
+}
+
+.date-group input[type="date"]:focus {
+  border: 1px solid var(--text-gray);
+  outline: none;
+}
+
+.reset-date-btn {
+  padding: 6px 8px;
+  height: 100%;
+  border: none;
+  border-radius: 6px;
+  background-color: #aaa;
+  font-weight: 600;
+  color: var(--text-light);
+  transition: all 0.3s ease;
+}
+
+.reset-date-btn:hover {
+  background-color: #999;
 }
 
 .upper-app {
