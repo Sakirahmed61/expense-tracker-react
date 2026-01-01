@@ -51,9 +51,24 @@ The app will run at http://localhost:3000.
 
 ## Future Improvements
 
-- Edit existing transactions
-- Better accessibility support
+- Dark Mode
 - Enhanced filtering and sorting options
+
+## Changelog
+
+### Version 1.2 (Jan 1, 2026)
+- Now you can edit an existing transaction and change the amount and description
+- Ui Responsiveness for smaller screens (< 350px)
+
+### Version 1.1 (Dec 31, 2025)
+- Added filters to transactions. Now you can filter and view transactions for a particular amount of time.
+- Transaction History is modified to display transactions labelled under dates
+- Dashboard updates with the filters.
+
+### Version 1.0 (Dec 25, 2025)
+- You can create and delete transactions
+- View the transaction history in the History section of the app
+- Change currency values to either USD or INR
 
 ## Acknowledgment
 
