@@ -15,7 +15,6 @@
 }
 
 input {
-  width: 100%;
   padding: 6px;
   border-radius: 6px;
   border: 1px solid transparent;
@@ -23,6 +22,7 @@ input {
 
 /* Exclusive styling for text and number inputs */
 input[type="text"], input[type="number"] { 
+  width: 100%;
   margin-top: 10px;
 }
 
@@ -49,4 +49,34 @@ input[type="text"], input[type="number"] {
 .input-error {
   border: 1px solid hsl(0, 72%, 50%);
   background-color: hsl(0, 72%, 95%);
+}
+
+.cancel-edit-btn {
+  padding: 6px;
+  border: 1px solid var(--red);
+  border-radius: 10px;
+  font-weight: 600;
+  background: var(--card-bg);
+  color: var(--red);
+  cursor: pointer;
+  /* animation setup */
+  opacity: 0;
+  transform: translateY(-6px);
+  max-height: 0;
+  overflow: hidden;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    max-height 0.25s ease;
+}
+
+.cancel-edit-btn:hover {
+  background-color: hsl(0, 71%, 87%);
+}
+
+.cancel-edit-btn.show {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 40px;
 }

@@ -27,7 +27,8 @@
 .container {
   background-color: var(--card-bg);
   padding: 20px;
-  width: 100%;
+  margin: 20px;
+  width: 95%;
   max-width: 700px;
   box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
   border-radius: 10px;
@@ -79,14 +80,15 @@
   height: 100%;
   border: none;
   border-radius: 6px;
-  background-color: #aaa;
+  background-color: #eabb54;
   font-weight: 600;
-  color: var(--text-light);
+  color: var(--text-dark);
   transition: all 0.3s ease;
 }
 
 .reset-date-btn:hover {
-  background-color: #999;
+  background-color: #ecb43c;
+  cursor: pointer;
 }
 
 .upper-app {
@@ -107,8 +109,8 @@
 
 @media (max-width: 450px) {
 
-  .container {
-    max-width: 90%;
+  .App {
+    height: auto;
   }
 
   header h1 {
@@ -117,5 +119,51 @@
 
   .lower-app {
     flex-direction: column-reverse;
+    gap: 10px;
   }
+
+  .date-group {
+    flex-direction: column;
+  }
+
+  .reset-date-btn {
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 400px) {
+
+  .App {
+    height: auto;
+  }
+
+  .container {
+    width: 100%;
+    margin: 0;
+    padding: 12px;
+  }
+
+  header h1 {
+    font-size: 1.4rem;
+  }
+
+
+  .date-selectors {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .date-group {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .reset-date-btn {
+    align-self: flex-end;
+    font-size: 0.6rem;
+    padding: 6px;
+  }
+
+
 }

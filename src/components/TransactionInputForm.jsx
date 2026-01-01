@@ -1,46 +1,72 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState , useEffect} from 'react'
 import "./TransactionInputForm.css"
 
-export default function TransactionInputForm(props) {
+export default function TransactionInputForm({onAddTransaction ,
+editingTransaction , setEditingTransaction , onUpdateTransaction}) {
 
   const [label, setLabel] = useState("");
   const [amount, setAmount] = useState("");
   const [hasError, setHasError] = useState(false);
 
   const amountInputRef = useRef(null)
+  const labelInputRef = useRef(null)
 
-  const handleAddTransaction = () => {
+  useEffect(() => {
+    if(editingTransaction) {
+      setLabel(editingTransaction.label)
+      setAmount(editingTransaction.amount.toString());
+    } else {
+      setLabel("");
+      setAmount("");
+    }
+  }, [editingTransaction])
+
+  const handleSubmit = () => {
 
     if(label.trim() === "" || amount.trim() === "" || isNaN(amount)) {
       setHasError(true);
       return
     }
     
-    setHasError(false);
+    setHasError(false)
 
-    const transaction = {
-      id: Date.now(),
-      label: label,
-      amount: Number(amount),
-      dateCreated: new Date().toISOString()
+    if (editingTransaction) {
+      const updatedTransaction = {
+        ...editingTransaction,
+        label: label,
+        amount: Number(amount)
+      };
+
+      onUpdateTransaction(updatedTransaction);
+      setEditingTransaction(null)
+    } else {
+      const transaction = {
+        id: Date.now(),
+        label: label,
+        amount: Number(amount),
+        dateCreated: new Date().toISOString()
+      }
+
+      onAddTransaction(transaction)
     }
-
-    props.onAddTransaction(transaction)
+    
     setLabel("")
     setAmount("")
   }
 
   return (
     <div className='trans-form-container'>
-      <h3>Add Transaction</h3>
+      <h3>{editingTransaction ? "Edit Transaction" : "Add Transaction"}</h3>
 
       <div className="form-group">
         <label>Description</label>
         <input
+          className={hasError && (label.trim() === "" || isNaN(label)) ? "input-error" : ""}
           id="trans-description"
           type="text"
           value={label}
           placeholder='Enter the description'
+          ref={labelInputRef}
           required
 
           onChange={(e) => setLabel(e.target.value)}
@@ -65,14 +91,33 @@ export default function TransactionInputForm(props) {
           
           onChange={(e) => setAmount(e.target.value)}
           onKeyDown={(e) => {
-            if(e.key === "Enter") handleAddTransaction()
-            if(["e","E"].includes(e.key)) e.preventDefault()}}
+            if(e.key === "Enter") {
+              handleSubmit()
+              labelInputRef.current.focus()}
+            if(["e","E"].includes(e.key)) e.preventDefault()
+            
+          }}
         />
 
         <small>Use ( - ) for expenses</small>
 
       </div>
-      <button className='add-trans-btn' onClick={handleAddTransaction}>Add Transaction</button>
+      <button 
+        className='add-trans-btn' 
+        onClick={handleSubmit}>
+          {editingTransaction ? "Edit Transaction" : "Add Transaction"}
+      </button>
+      
+      <button
+        className={`cancel-edit-btn ${editingTransaction ? "show" : ""}`}
+        onClick={() => {
+          setEditingTransaction(null);
+          setLabel("");
+          setAmount("");
+        }}
+      >
+        Cancel
+      </button>
     </div>
   )
 }

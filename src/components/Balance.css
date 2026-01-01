@@ -13,3 +13,13 @@
   font-size: 2rem;
   transform: translateX(-1px);
 }
+
+@media (max-width: 400px) {
+  .balance-container h3 {
+    font-size: 1.2rem;
+  }
+
+  .balance-container p {
+    font-size: 1.5rem;
+  }
+}

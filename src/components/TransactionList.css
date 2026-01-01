@@ -36,6 +36,12 @@
   justify-content: space-between;
   margin-bottom: 10px;
   border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.list-item:hover {
+  background-color: var(--card-bg);
 }
 
 .list-item:last-of-type {
@@ -48,6 +54,11 @@
 
 .list-item.expense {
   border-right: 2px solid var(--red);
+}
+
+.list-item.editing {
+  outline: 1px solid #333;
+  background-color: rgb(247, 239, 201);
 }
 
 .trans-item-right {

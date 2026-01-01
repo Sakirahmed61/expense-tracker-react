@@ -24,6 +24,8 @@ function App() {
     }));
   });
 
+  const [editingTransaction, setEditingTransaction] = useState(null)
+
   const [fromDate, setFromDate] = useState(null);
   const [toDate, setToDate] = useState(null);
 
@@ -92,6 +94,10 @@ function App() {
     setTransactions(prev => 
     prev.filter(transaction => transaction.id !== id)
     )
+
+    if(editingTransaction && editingTransaction.id === id) {
+      setEditingTransaction(null)
+    }
   }
 
   const formatCurrency = (value) => {
@@ -104,17 +110,34 @@ function App() {
     }).format(value)
   }
 
+  const updateTransaction = (updatedTransaction) => {
+    setTransactions(prev => 
+      prev.map(t => 
+        t.id === updatedTransaction.id ? updatedTransaction : t
+      )
+    )
+  }
+
+  const startEditingTransaction = (transaction) => {
+    setEditingTransaction(transaction);
+  }
+
   // UI starts from here =================================
 
   return (
     <div className="App">
       <div className="container">
+
         <header className="header">
+
           <h1>Expense Tracker</h1>
+          
           <CurrencySelector
             currency={currency}
-            onCurrencyChange={setCurrency}></CurrencySelector>
+            onCurrencyChange={setCurrency}>
+          </CurrencySelector>
         </header>
+        
         <div className="date-selectors">
 
           <div className="date-group">
@@ -165,11 +188,19 @@ function App() {
 
           <TransactionList
             transactions={groupedTransactions}
+            onEditTransaction={startEditingTransaction}
             onRemoveTransaction={removeTransaction}
-            formatCurrency = {formatCurrency}></TransactionList>       
+            formatCurrency = {formatCurrency}
+            editingTransaction={editingTransaction}
+            >
+          </TransactionList>       
 
           <TransactionInputForm
-            onAddTransaction = {addTransaction}>
+            onAddTransaction = {addTransaction}
+            editingTransaction = {editingTransaction}
+            setEditingTransaction = {setEditingTransaction}
+            onUpdateTransaction = {updateTransaction}
+          >
           </TransactionInputForm>
 
         </section>

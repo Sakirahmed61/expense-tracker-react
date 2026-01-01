@@ -1,6 +1,6 @@
 import "./TransactionList.css"
 
-export default function TransactionList({transactions, onRemoveTransaction, formatCurrency}) {
+export default function TransactionList({transactions, onRemoveTransaction, formatCurrency , onEditTransaction , editingTransaction}) {
 
   return (
     <div className='transaction-list'>
@@ -17,8 +17,14 @@ export default function TransactionList({transactions, onRemoveTransaction, form
 
               {items.map(transaction => (
 
-                <li key={transaction.id} 
-                  className={`list-item ${transaction.amount < 0 ? "expense" : "income"}`}>
+                <li 
+                  key={transaction.id} 
+                  className={`list-item 
+                    ${transaction.amount < 0 ? "expense" : "income"}
+                    ${editingTransaction?.id === transaction.id ? "editing" : ""}
+                    `}
+                  onClick={() => onEditTransaction(transaction)}
+                >
                   
                   <span className='trans-label'>{transaction.label}</span>
 
@@ -26,7 +32,11 @@ export default function TransactionList({transactions, onRemoveTransaction, form
                     <span className={`trans-amount ${transaction.amount < 0 ? "expense" : "income"}`}>{formatCurrency(transaction.amount)}</span>
 
                     <button className='remove-btn'
-                      onClick={() => onRemoveTransaction(transaction.id)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onRemoveTransaction(transaction.id)
+                        
+                      }}
                     ></button>
                   </div>
                 </li>
